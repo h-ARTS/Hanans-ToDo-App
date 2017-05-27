@@ -19799,6 +19799,10 @@
 	               tasks: ["Take out the trash", "Carwash of my BMW", "Learn React", "Learn Redux"]
 	          };
 	     },
+
+	     propTypes: {
+	          tasks: _react2.default.PropTypes.array.isRequired
+	     },
 	     getInitialState: function getInitialState() {
 	          return {
 	               tasks: []
@@ -19808,6 +19812,15 @@
 	          this.setState({
 	               tasks: this.props.tasks
 	          });
+	          console.log(this.props.tasks);
+	     },
+	     taskHandler: function taskHandler(task) {
+
+	          this.setState({
+	               tasks: this.state.tasks.concat([task])
+	          });
+
+	          console.log(this.state.tasks);
 	     },
 	     render: function render() {
 	          return _react2.default.createElement(
@@ -19824,7 +19837,7 @@
 	                              { className: 'text-center' },
 	                              'Todos'
 	                         ),
-	                         _react2.default.createElement(_ToDoForm2.default, null),
+	                         _react2.default.createElement(_ToDoForm2.default, { addTask: this.taskHandler }),
 	                         _react2.default.createElement(_ToDoList2.default, { tasks: this.state.tasks })
 	                    )
 	               ),
@@ -19852,10 +19865,10 @@
 /* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	     value: true
+	    value: true
 	});
 
 	var _react = __webpack_require__(1);
@@ -19865,19 +19878,48 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var ToDoForm = _react2.default.createClass({
-	     displayName: "ToDoForm",
-	     render: function render() {
-	          return _react2.default.createElement(
-	               "form",
-	               null,
-	               _react2.default.createElement("input", { type: "text", className: "form-control input-lg", placeholder: "Add todo" }),
-	               _react2.default.createElement(
-	                    "button",
-	                    { className: "btn btn-lg btn-success" },
-	                    "Mark all as done"
-	               )
-	          );
-	     }
+	    displayName: 'ToDoForm',
+	    getInitialState: function getInitialState() {
+	        return {
+	            task: ""
+	        };
+	    },
+	    handleSubmit: function handleSubmit(e) {
+	        e.preventDefault();
+
+	        var task = this.state.task;
+
+	        if (task.length > 0) {
+	            this.props.addTask(task);
+	            this.state.task = '';
+	        }
+
+	        console.log("Its " + this.state.task);
+	    },
+	    handleChange: function handleChange(e, attr) {
+	        var newState = this.state;
+	        console.log(newState.task);
+	        newState[attr] = e.target.value;
+	        this.setState({
+	            task: newState.task
+	        });
+	    },
+	    render: function render() {
+	        var _this = this;
+
+	        return _react2.default.createElement(
+	            'form',
+	            { onSubmit: this.handleSubmit },
+	            _react2.default.createElement('input', { type: 'text', ref: 'task', className: 'form-control input-lg', value: this.state.task, placeholder: 'Add todo', onChange: function onChange(e) {
+	                    return _this.handleChange(e, 'task');
+	                } }),
+	            _react2.default.createElement(
+	                'button',
+	                { className: 'btn btn-lg btn-success' },
+	                'Mark all as done'
+	            )
+	        );
+	    }
 	});
 
 	exports.default = ToDoForm;

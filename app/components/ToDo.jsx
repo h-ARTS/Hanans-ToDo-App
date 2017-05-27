@@ -15,6 +15,9 @@ var ToDo = React.createClass({
                ]
           }
      },
+     propTypes: {
+         tasks: React.PropTypes.array.isRequired
+     },
      getInitialState() {
           return {
                tasks: []
@@ -24,6 +27,15 @@ var ToDo = React.createClass({
           this.setState({
                tasks: this.props.tasks
           });
+          console.log(this.props.tasks);
+     },
+     taskHandler(task) {
+
+        this.setState({
+            tasks: this.state.tasks.concat([task])
+        });
+
+        console.log(this.state.tasks);
      },
      render() {
           return(
@@ -31,7 +43,7 @@ var ToDo = React.createClass({
                     <div className="col-md-6">
                          <div className="card-main">
                               <h3 className="text-center">Todos</h3>
-                              <ToDoForm />
+                              <ToDoForm addTask={this.taskHandler} />
                               <ToDoList tasks={this.state.tasks} />
                          </div>
                     </div>
