@@ -1,6 +1,6 @@
 import React from 'react';
 
-var ToDoForm = React.createClass({
+const ToDoForm = React.createClass({
     getInitialState() {
         return {
             task: ""
@@ -9,7 +9,7 @@ var ToDoForm = React.createClass({
     handleSubmit(e) {
         e.preventDefault();
 
-        var task = this.state.task;
+        const task = this.state.task;
 
         if(task.length > 0) {
             this.props.addTask(task);
@@ -20,7 +20,7 @@ var ToDoForm = React.createClass({
 
     },
     handleChange(e, attr) {
-        var newState = this.state;
+        const newState = this.state;
         console.log(newState.task);
         newState[attr] = e.target.value;
         this.setState({
@@ -29,10 +29,12 @@ var ToDoForm = React.createClass({
     },
     render() {
         return(
-            <form onSubmit={this.handleSubmit}>
-                <input type="text" ref="task" className="form-control input-lg" value={this.state.task} placeholder="Add todo" onChange={(e) => this.handleChange(e, 'task')} />
-                <button className="btn btn-lg btn-success">Mark all as done</button>
-            </form>
+            <div>
+                <form onSubmit={this.handleSubmit}>
+                    <input type="text" ref="task" className="form-control input-lg" value={this.state.task} placeholder="Add todo" onChange={(e) => this.handleChange(e, 'task')} />
+                </form>
+                <button onClick={this.props.completeAll} className="btn btn-lg btn-success">Mark all as done</button>
+            </div>
         );
     }
 });

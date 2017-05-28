@@ -1,10 +1,10 @@
 import React from 'react';
 
-var ToDoCount = React.createClass({
+const ToDoCount = React.createClass({
      render() {
           return(
                <div className="card-footer bg-success">
-                    <strong>3</strong> Items Left
+                    <strong>{this.props.count}</strong> Items Left
                </div>
           );
      }
