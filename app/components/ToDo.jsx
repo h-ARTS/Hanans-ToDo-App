@@ -44,7 +44,6 @@ const ToDo = React.createClass({
           this.setState({
                tasks: this.props.tasks
           });
-          console.log(this.props.tasks);
      },
      taskHandler(task) {
         const newTask = {
@@ -54,8 +53,6 @@ const ToDo = React.createClass({
         this.setState({
             tasks: this.state.tasks.concat(newTask)
         });
-
-        console.log(this.state.tasks);
      },
      taskComplete(id,task,isComplete) {
          const todo = {
@@ -82,6 +79,16 @@ const ToDo = React.createClass({
             completedTasks: this.state.completedTasks.concat(completeAll)
         });
      },
+     updateList(items) {
+        this.setState({
+            completedTasks: items
+        })
+     },
+     count(int) {
+        this.setState({
+            countTasks: int
+        })
+     },
      render() {
           return(
                <div className="row">
@@ -89,14 +96,14 @@ const ToDo = React.createClass({
                          <div className="card-main">
                               <h3 className="text-center">Todos</h3>
                               <ToDoForm addTask={this.taskHandler} completeAll={this.completeAll}/>
-                              <ToDoList tasks={this.state.tasks} complete={this.taskComplete} />
+                              <ToDoList tasks={this.state.tasks} complete={this.taskComplete} count={this.count} />
                          </div>
                         <ToDoCount count={this.state.tasks.length} />   
                     </div>
                     <div className="col-md-6">
                          <div className="card-main">
                               <h3 className="text-center">Completed</h3>
-                              <ListCompleted completed={this.state.completedTasks} /> 
+                              <ListCompleted completed={this.state.completedTasks} updateList={this.updateList} /> 
                          </div>
                     </div>
                </div>

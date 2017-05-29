@@ -19767,7 +19767,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	     value: true
+	    value: true
 	});
 
 	var _react = __webpack_require__(1);
@@ -19793,117 +19793,124 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var ToDo = _react2.default.createClass({
-	     displayName: 'ToDo',
-	     getDefaultProps: function getDefaultProps() {
-	          return {
-	               tasks: [{
-	                    id: 1,
-	                    task: "Take out the trash",
-	                    isComplete: false
-	               }, {
-	                    id: 2,
-	                    task: "Carwash of my BMW",
-	                    isComplete: false
-	               }, {
-	                    id: 3,
-	                    task: "Learn React",
-	                    isComplete: false
-	               }, {
-	                    id: 4,
-	                    task: "Learn Redux",
-	                    isComplete: false
-	               }]
-	          };
-	     },
+	    displayName: 'ToDo',
+	    getDefaultProps: function getDefaultProps() {
+	        return {
+	            tasks: [{
+	                id: 1,
+	                task: "Take out the trash",
+	                isComplete: false
+	            }, {
+	                id: 2,
+	                task: "Carwash of my BMW",
+	                isComplete: false
+	            }, {
+	                id: 3,
+	                task: "Learn React",
+	                isComplete: false
+	            }, {
+	                id: 4,
+	                task: "Learn Redux",
+	                isComplete: false
+	            }]
+	        };
+	    },
 
-	     propTypes: {
-	          tasks: _react2.default.PropTypes.array.isRequired
-	     },
-	     getInitialState: function getInitialState() {
-	          return {
-	               tasks: [],
-	               completedTasks: []
-	          };
-	     },
-	     componentDidMount: function componentDidMount() {
-	          this.setState({
-	               tasks: this.props.tasks
-	          });
-	          console.log(this.props.tasks);
-	     },
-	     taskHandler: function taskHandler(task) {
-	          var newTask = {
-	               id: Math.floor(Math.random() * 999) + 1,
-	               task: task
-	          };
-	          this.setState({
-	               tasks: this.state.tasks.concat(newTask)
-	          });
-
-	          console.log(this.state.tasks);
-	     },
-	     taskComplete: function taskComplete(id, task, isComplete) {
-	          var todo = {
-	               id: id,
-	               task: task,
-	               isComplete: !isComplete
-	          };
-	          this.setState({
-	               tasks: this.state.tasks.filter(function (el) {
-	                    return id !== el.id;
-	               }),
-	               completedTasks: this.state.completedTasks.concat(todo)
-	          });
-	     },
-	     completeAll: function completeAll() {
-	          var completeAll = this.state.tasks.map(function (task) {
-	               return {
-	                    id: task.id,
-	                    task: task.task,
-	                    isComplete: !task.isComplete
-	               };
-	          });
-	          this.setState({
-	               tasks: [],
-	               completedTasks: this.state.completedTasks.concat(completeAll)
-	          });
-	     },
-	     render: function render() {
-	          return _react2.default.createElement(
-	               'div',
-	               { className: 'row' },
-	               _react2.default.createElement(
+	    propTypes: {
+	        tasks: _react2.default.PropTypes.array.isRequired
+	    },
+	    getInitialState: function getInitialState() {
+	        return {
+	            tasks: [],
+	            completedTasks: []
+	        };
+	    },
+	    componentDidMount: function componentDidMount() {
+	        this.setState({
+	            tasks: this.props.tasks
+	        });
+	    },
+	    taskHandler: function taskHandler(task) {
+	        var newTask = {
+	            id: Math.floor(Math.random() * 999) + 1,
+	            task: task
+	        };
+	        this.setState({
+	            tasks: this.state.tasks.concat(newTask)
+	        });
+	    },
+	    taskComplete: function taskComplete(id, task, isComplete) {
+	        var todo = {
+	            id: id,
+	            task: task,
+	            isComplete: !isComplete
+	        };
+	        this.setState({
+	            tasks: this.state.tasks.filter(function (el) {
+	                return id !== el.id;
+	            }),
+	            completedTasks: this.state.completedTasks.concat(todo)
+	        });
+	    },
+	    completeAll: function completeAll() {
+	        var completeAll = this.state.tasks.map(function (task) {
+	            return {
+	                id: task.id,
+	                task: task.task,
+	                isComplete: !task.isComplete
+	            };
+	        });
+	        this.setState({
+	            tasks: [],
+	            completedTasks: this.state.completedTasks.concat(completeAll)
+	        });
+	    },
+	    updateList: function updateList(items) {
+	        this.setState({
+	            completedTasks: items
+	        });
+	    },
+	    count: function count(int) {
+	        this.setState({
+	            countTasks: int
+	        });
+	    },
+	    render: function render() {
+	        return _react2.default.createElement(
+	            'div',
+	            { className: 'row' },
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'col-md-6' },
+	                _react2.default.createElement(
 	                    'div',
-	                    { className: 'col-md-6' },
+	                    { className: 'card-main' },
 	                    _react2.default.createElement(
-	                         'div',
-	                         { className: 'card-main' },
-	                         _react2.default.createElement(
-	                              'h3',
-	                              { className: 'text-center' },
-	                              'Todos'
-	                         ),
-	                         _react2.default.createElement(_ToDoForm2.default, { addTask: this.taskHandler, completeAll: this.completeAll }),
-	                         _react2.default.createElement(_ToDoList2.default, { tasks: this.state.tasks, complete: this.taskComplete })
+	                        'h3',
+	                        { className: 'text-center' },
+	                        'Todos'
 	                    ),
-	                    _react2.default.createElement(_ToDoCount2.default, { count: this.state.tasks.length })
-	               ),
-	               _react2.default.createElement(
+	                    _react2.default.createElement(_ToDoForm2.default, { addTask: this.taskHandler, completeAll: this.completeAll }),
+	                    _react2.default.createElement(_ToDoList2.default, { tasks: this.state.tasks, complete: this.taskComplete, count: this.count })
+	                ),
+	                _react2.default.createElement(_ToDoCount2.default, { count: this.state.tasks.length })
+	            ),
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'col-md-6' },
+	                _react2.default.createElement(
 	                    'div',
-	                    { className: 'col-md-6' },
+	                    { className: 'card-main' },
 	                    _react2.default.createElement(
-	                         'div',
-	                         { className: 'card-main' },
-	                         _react2.default.createElement(
-	                              'h3',
-	                              { className: 'text-center' },
-	                              'Completed'
-	                         ),
-	                         _react2.default.createElement(_ListCompleted2.default, { completed: this.state.completedTasks })
-	                    )
-	               )
-	          );
-	     }
+	                        'h3',
+	                        { className: 'text-center' },
+	                        'Completed'
+	                    ),
+	                    _react2.default.createElement(_ListCompleted2.default, { completed: this.state.completedTasks, updateList: this.updateList })
+	                )
+	            )
+	        );
+	    }
 	});
 
 	exports.default = ToDo;
@@ -19940,12 +19947,9 @@
 	            this.props.addTask(task);
 	            this.state.task = '';
 	        }
-
-	        console.log("Its " + this.state.task);
 	    },
 	    handleChange: function handleChange(e, attr) {
 	        var newState = this.state;
-	        console.log(newState.task);
 	        newState[attr] = e.target.value;
 	        this.setState({
 	            task: newState.task
@@ -19985,6 +19989,8 @@
 	    value: true
 	});
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
@@ -19995,40 +20001,54 @@
 	    displayName: "ToDoList",
 	    getInitialState: function getInitialState() {
 	        return {
-	            tasks: this.props.tasks
+	            tasks: this.props.tasks,
+	            countTasks: this.props.countTasks
 	        };
+	    },
+	    remove: function remove(task) {
+	        var arr = this.props.tasks;
+	        var index = arr.findIndex(function (x) {
+	            return x.id == task.id;
+	        });
+	        arr.splice(index, 1);
+	        this.setState({
+	            tasks: arr,
+	            countTasks: arr.length
+	        });
+	        this.props.count(arr.length);
 	    },
 	    render: function render() {
 	        var _this = this;
 
-	        var tasks = this.props.tasks.map(function (task, id) {
-	            return _react2.default.createElement(
-	                "li",
-	                { key: id },
-	                _react2.default.createElement(
-	                    "div",
-	                    { className: "checkbox" },
-	                    _react2.default.createElement(
-	                        "label",
-	                        null,
-	                        _react2.default.createElement("input", { type: "checkbox", checked: task.isComplete, onChange: function onChange() {
-	                                return _this.props.complete(task.id, task.task, task.isComplete);
-	                            } }),
-	                        " ",
-	                        task.task
-	                    ),
-	                    _react2.default.createElement(
-	                        "button",
-	                        { type: "button", className: "btn btn-danger btn-xs pull-right" },
-	                        "X"
-	                    )
-	                )
-	            );
-	        });
 	        return _react2.default.createElement(
 	            "ul",
 	            { className: "list-unstyled" },
-	            tasks
+	            this.props.tasks.map(function (task, id) {
+	                return _react2.default.createElement(
+	                    "li",
+	                    { key: id },
+	                    _react2.default.createElement(
+	                        "div",
+	                        { className: "checkbox" },
+	                        _react2.default.createElement(
+	                            "label",
+	                            null,
+	                            _react2.default.createElement("input", { type: "checkbox", checked: task.isComplete, onChange: function onChange() {
+	                                    return _this.props.complete(task.id, task.task, task.isComplete);
+	                                } }),
+	                            " ",
+	                            task.task
+	                        ),
+	                        _react2.default.createElement(
+	                            "button",
+	                            { type: "button", onClick: function onClick() {
+	                                    return _this.remove(_extends({}, task));
+	                                }, className: "btn btn-danger btn-xs pull-right" },
+	                            "X"
+	                        )
+	                    )
+	                );
+	            })
 	        );
 	    }
 	});
@@ -20076,7 +20096,7 @@
 	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
-	     value: true
+	    value: true
 	});
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -20087,40 +20107,50 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var generate = function generate(Comp, propName) {
-	     return function (props) {
-	          return _react2.default.createElement(Comp, _extends({ key: props[propName] }, props));
-	     };
-	};
-
-	var TaskItem = function TaskItem(task) {
-	     return _react2.default.createElement(
-	          "li",
-	          null,
-	          _react2.default.createElement(
-	               "del",
-	               { id: task.id },
-	               task.task
-	          ),
-	          _react2.default.createElement(
-	               "button",
-	               { type: "button", className: "btn btn-danger btn-xs pull-right" },
-	               "X"
-	          )
-	     );
-	};
-
-	var Tasks = generate(TaskItem, 'id');
-
 	var ListCompleted = _react2.default.createClass({
-	     displayName: "ListCompleted",
-	     render: function render() {
-	          return _react2.default.createElement(
-	               "ul",
-	               { className: "list-unstyled completed" },
-	               this.props.completed.map(Tasks)
-	          );
-	     }
+	    displayName: "ListCompleted",
+	    getInitialState: function getInitialState() {
+	        return {
+	            completedTasks: this.props.completed
+	        };
+	    },
+	    remove: function remove(task) {
+	        var arr = this.props.completed;
+	        var index = arr.findIndex(function (x) {
+	            return x.id == task.id;
+	        });
+	        arr.splice(index, 1);
+	        this.setState({
+	            completedTasks: arr
+	        });
+	        this.props.updateList(arr);
+	    },
+	    render: function render() {
+	        var _this = this;
+
+	        return _react2.default.createElement(
+	            "ul",
+	            { className: "list-unstyled completed" },
+	            this.props.completed.map(function (task) {
+	                return _react2.default.createElement(
+	                    "li",
+	                    { key: task.id },
+	                    _react2.default.createElement(
+	                        "del",
+	                        null,
+	                        task.task
+	                    ),
+	                    _react2.default.createElement(
+	                        "button",
+	                        { type: "button", onClick: function onClick() {
+	                                return _this.remove(_extends({}, task));
+	                            }, className: "btn btn-danger btn-xs pull-right" },
+	                        "X"
+	                    )
+	                );
+	            })
+	        );
+	    }
 	});
 
 	exports.default = ListCompleted;

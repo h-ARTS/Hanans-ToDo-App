@@ -16,12 +16,9 @@ const ToDoForm = React.createClass({
             this.state.task = '';
         }
 
-        console.log("Its " + this.state.task);
-
     },
     handleChange(e, attr) {
         const newState = this.state;
-        console.log(newState.task);
         newState[attr] = e.target.value;
         this.setState({
             task: newState.task
